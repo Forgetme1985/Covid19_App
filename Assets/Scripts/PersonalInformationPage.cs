@@ -27,4 +27,8 @@ public class PersonalInformationPage : MonoBehaviour
     {
         SceneManager.LoadScene("Data");
     }
+    public void Signout()
+    {
+        SceneManager.LoadScene("Login");
+    }
 }
