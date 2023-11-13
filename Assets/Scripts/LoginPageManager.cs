@@ -25,13 +25,15 @@ public class LoginPageManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("email: " + email + " " + textEmail.text);
+            Debug.Log("pass: " + pass + " " + textPass.text);
             if (email == textEmail.text && pass == textPass.text)
             {
                 SceneManager.LoadScene("PersonalInformation");
             }
             else
             {
-                textMessage.text = "Wrong userName or wrong password!";
+                textMessage.text = "Wrong email or wrong password!";
             }
         }
     }

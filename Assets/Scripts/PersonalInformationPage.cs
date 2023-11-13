@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersonalInformationPage : MonoBehaviour
 {
@@ -17,5 +18,13 @@ public class PersonalInformationPage : MonoBehaviour
         textVaccinations.text = PlayerPrefs.GetString("Vaccinations");
         textAddress.text = PlayerPrefs.GetString("Address");
         textBirthDay.text = PlayerPrefs.GetString("Birthday");
+    }
+    public void Report()
+    {
+        SceneManager.LoadScene("Report");
+    }
+    public void CovidData()
+    {
+        SceneManager.LoadScene("Data");
     }
 }
