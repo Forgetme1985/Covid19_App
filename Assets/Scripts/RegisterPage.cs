@@ -30,12 +30,31 @@ public class RegisterPage : MonoBehaviour
             }
             else
             {
-                PlayerPrefs.SetString("UserName", textUserName.text);
-                PlayerPrefs.SetString("Password", textPassword.text);
-                PlayerPrefs.SetString("Vaccinations", textVaccinations.text);
-                PlayerPrefs.SetString("Email", textEmail.text);
-                PlayerPrefs.SetString("Birthday", textBirthDay.text);
-                PlayerPrefs.SetString("Address", textAddress.text);
+                string userName = PlayerPrefs.GetString("UserName", string.Empty);
+                string password = PlayerPrefs.GetString("Password", string.Empty);
+                string vaccinations = PlayerPrefs.GetString("Vaccinations", string.Empty);
+                string email = PlayerPrefs.GetString("Email", string.Empty);
+                string birthday = PlayerPrefs.GetString("Birthday", string.Empty);
+                string address = PlayerPrefs.GetString("Address", string.Empty);
+                if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+                {
+                    PlayerPrefs.SetString("UserName", textUserName.text);
+                    PlayerPrefs.SetString("Password", textPassword.text);
+                    PlayerPrefs.SetString("Vaccinations", textVaccinations.text);
+                    PlayerPrefs.SetString("Email", textEmail.text);
+                    PlayerPrefs.SetString("Birthday", textBirthDay.text);
+                    PlayerPrefs.SetString("Address", textAddress.text);
+                }
+                else
+                {
+                    PlayerPrefs.SetString("UserName",userName + "," + textUserName.text);
+                    PlayerPrefs.SetString("Password",password + "," +  textPassword.text);
+                    PlayerPrefs.SetString("Vaccinations",vaccinations + "," + textVaccinations.text);
+                    PlayerPrefs.SetString("Email", email + "," + textEmail.text);
+                    PlayerPrefs.SetString("Birthday", birthday + "," + textBirthDay.text);
+                    PlayerPrefs.SetString("Address",address + "," + textAddress.text);
+                }
+                
                 SceneManager.LoadScene("Login");
             }
         }

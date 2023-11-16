@@ -6,28 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class LoginPage : MonoBehaviour
 {
+    [HideInInspector]
+    public static int indexUser;
+
     public TextMeshProUGUI textEmail;
     public TextMeshProUGUI textPass;
     public TextMeshProUGUI textMessage;
 
-    private string email;
-    private string pass;
+    private List<string> emails = new List<string>();
+    private List<string> passes = new List<string>();
     public void Start()
     {
-        email = PlayerPrefs.GetString("Email",string.Empty);
-        pass = PlayerPrefs.GetString("Password",string.Empty);
+        indexUser = -1;
+        emails = new List<string>(PlayerPrefs.GetString("Email",string.Empty).Split(","));
+        passes = new List<string>(PlayerPrefs.GetString("Password",string.Empty).Split(","));
     }
     public void Login()
     {
-        if (email == string.Empty && pass == string.Empty)
+        if (emails.Count == 0 && passes.Count == 0)
         {
             textMessage.text = "Your account doesn't exist!, please create a new account.";
         }
         else
         {
-            Debug.Log("email: " + email + " " + textEmail.text);
-            Debug.Log("pass: " + pass + " " + textPass.text);
-            if (email == textEmail.text && pass == textPass.text)
+
+            indexUser = emails.FindIndex(e => e == textEmail.text);
+            if (indexUser >= 0 && passes.FindIndex(p=>p == textPass.text) >= 0)
             {
                 SceneManager.LoadScene("PersonalInformation");
             }

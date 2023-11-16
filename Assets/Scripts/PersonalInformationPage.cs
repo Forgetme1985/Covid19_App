@@ -13,11 +13,11 @@ public class PersonalInformationPage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("address: " + PlayerPrefs.GetString("Address"));
-        textUserName.text = PlayerPrefs.GetString("UserName");
-        textVaccinations.text = PlayerPrefs.GetString("Vaccinations");
-        textAddress.text = PlayerPrefs.GetString("Address");
-        textBirthDay.text = PlayerPrefs.GetString("Birthday");
+       
+        textUserName.text = new List<string>( PlayerPrefs.GetString("UserName").Split(","))[LoginPage.indexUser];
+        textVaccinations.text = new List<string>( PlayerPrefs.GetString("Vaccinations").Split(","))[LoginPage.indexUser];
+        textAddress.text = new List<string>(PlayerPrefs.GetString("Address").Split(","))[LoginPage.indexUser];
+        textBirthDay.text = new List<string>(PlayerPrefs.GetString("Birthday").Split(","))[LoginPage.indexUser];
     }
     public void Report()
     {
